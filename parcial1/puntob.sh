@@ -2,6 +2,9 @@
 
 # lsblk inicial
 lsblk 
+
+lsblk >> ~/parcial1/puntob.sh
+
 # NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 # loop0    7:0    0 63.9M  1 loop /snap/core20/2318
 # loop1    7:1    0   64M  1 loop /snap/core20/2379
@@ -38,9 +41,28 @@ e
 n
 l
 
-+2400M
++2500M
 w
 EOF
 
 sudo fdisk -l /dev/sdc
+
+# formatear discos
+sudo mkfs.ext3 /dev/sdc1
+sudo mkfs.ext3 /dev/sdc2
+sudo mkfs.ext3 /dev/sdc3
+sudo mkfs.ext3 /dev/sdc5
+
+sudo lsblk -f
+
+# montarlos
+
+cd /mnt
+
+sudo mkdir -p /mnt/disco/{sdc1,sdc2,sdc3,sdc5}
+
+sudo mount /dev/sdc1 /mnt/disco/sdc1
+sudo mount /dev/sdc2 /mnt/disco/sdc2
+sudo mount /dev/sdc3 /mnt/disco/sdc3
+sudo mount /dev/sdc5 /mnt/disco/sdc5
 
